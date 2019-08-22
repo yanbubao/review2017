@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="studentDaoImpl" class="night.dao.StudentDaoImpl"/>
+
+    <bean id="studentServiceImpl" class="night.service.StudentServiceImpl">
+        <property name="studentDao" ref="studentDaoImpl"/>
+    </bean>
+
+    <!--配置我们的student对象   lazy-init="true"  按需加载-->
+    <bean id="student" class="night.Student" lazy-init="true">
+        <property name="age" value="20"/>
+        <property name="name" value="小黑"/>
+    </bean>
+
+    <!-- 在spring的核心配置文件中  所有的bean默认都是单例模式
+       scope="singleton"  默认
+       scope="prototype"  原型
+       -->
+    <bean id="student2" class="night.Student" scope="prototype">
+        <property name="age" value="40"/>
+        <property name="name" value="小黑2"/>
+    </bean>
+
+</beans>
