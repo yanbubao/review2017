@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c">
+
+
+    <bean id="grade" class="night.Grade">
+        <!--01.设值注入，在对应bean中必须设有set方法，容器底层通过set方法进行DI依赖注入！-->
+        <property name="gradeId" value="1"/>
+        <property name="gradeName" value="一年级"/>
+    </bean>
+
+    <!--02.p命名空间注入-->
+    <bean id="student" class="night.Student"
+          p:name="张三" p:age="18" p:grade-ref="grade"/>
+
+    <!--03.通过bean的构造方法注入，不需要set方法-->
+    <bean id="student1" class="night.Student">
+        <constructor-arg index="0" value="李四"/>
+        <constructor-arg index="1" value="19"/>
+        <constructor-arg index="2" ref="grade"/>
+        <!--002:使用参数的名称
+        <constructor-arg name="name" value="李四"/>
+        <constructor-arg name="age" value="19"/>
+        <constructor-arg name="grade" ref="grade"/>
+        003:使用参数的默认顺序
+        <constructor-arg  value="李四"/>
+        <constructor-arg  value="19"/>
+        <constructor-arg  ref="grade"/>-->
+    </bean>
+
+    <!--04.通过c命名空间注入值，要有对应的构造方法！-->
+    <bean id="student2" class="night.Student" c:age="20" c:name="王五" c:grade-ref="grade"/>
+
+    <bean id="propertiesBean" class="night.PropertiesBean">
+        <property name="age" value="21"/>
+        <property name="student" ref="student"/>
+        <property name="name" value="properties"/>
+        <property name="list">
+            <list>
+                <value>1</value>
+                <value>2</value>
+                <value>3</value>
+            </list>
+        </property>
+        <property name="names">
+            <array>
+                <value>1</value>
+                <value>2</value>
+                <value>3</value>
+            </array>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="k" value="v"/>
+            </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="url">1</prop>
+                <prop key="name">2</prop>
+                <prop key="password">3</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>
