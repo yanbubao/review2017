@@ -5,5 +5,10 @@
     <file url="file://$PROJECT_DIR$/Spring/_01SpringBase" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Spring/_02SpringCreateObject" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Spring/_03SpringProperties" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Spring/_04SpringAutoWired" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Spring/_05SpringSPEL" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Spring/_06SpringConfiguration" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Spring/_07SpringJdbc" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Spring/_08SpringAopProxy" charset="UTF-8" />
   </component>
 </project>

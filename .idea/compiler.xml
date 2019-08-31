@@ -6,9 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="_03SpringProperties" />
-        <module name="_01SpringBase" />
+        <module name="_06SpringConfiguration" />
         <module name="_02SpringCreateObject" />
+        <module name="_01SpringBase" />
+        <module name="_05SpringSPEL" />
+        <module name="_07SpringJdbc" />
+        <module name="_03SpringProperties" />
+        <module name="_04SpringAutoWired" />
+        <module name="_08SpringAopProxy" />
       </profile>
     </annotationProcessing>
   </component>

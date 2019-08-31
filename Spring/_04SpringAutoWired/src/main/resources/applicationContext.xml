@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--autowire  自动装配对象
+   01.byName：spring会根据实体类中的属性名，去找xml文件中id为属性名的bean进行装配！
+   02.byType：spring会根据实体类中的属性类型，去找xml文件中找一个class是 属性类型的类进行装配,
+       如果有多个 会报错！-->
+
+    <bean id="person" class="night.Person" autowire="byName">
+        <property name="name" value="张三"/>
+        <property name="age" value="20"/>
+        <!--直接引用的话会覆盖autowired！-->
+        <property name="dog" ref="other"/>
+    </bean>
+
+    <bean id="cat" class="night.Cat">
+        <property name="name" value="折耳猫"/>
+    </bean>
+
+    <bean id="dog" class="night.Dog">
+        <property name="name" value="哈士奇"/>
+    </bean>
+
+    <bean id="smallDog" class="night.SmallDog">
+        <property name="name" value="小哈士奇"/>
+    </bean>
+
+    <bean id="other" class="night.Dog">
+        <property name="name" value="other"/>
+    </bean>
+</beans>

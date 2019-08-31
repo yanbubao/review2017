@@ -15,6 +15,11 @@
         <module>_01SpringBase</module>
         <module>_02SpringCreateObject</module>
         <module>_03SpringProperties</module>
+        <module>_04SpringAutoWired</module>
+        <module>_05SpringSPEL</module>
+        <module>_06SpringConfiguration</module>
+        <module>_07SpringJdbc</module>
+        <module>_08SpringAopProxy</module>
     </modules>
 
     <properties>
@@ -70,6 +75,47 @@
             <artifactId>commons-logging</artifactId>
             <version>1.1.1</version>
         </dependency>
+
+        <!--引入mysql的驱动包-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.13</version>
+        </dependency>
+
+        <!--配置jdbc需要的数据源-->
+        <dependency>
+            <groupId>commons-pool</groupId>
+            <artifactId>commons-pool</artifactId>
+            <version>1.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>c3p0</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.1.2</version>
+        </dependency>
+
+        <!--SpringJDBC需要的jar-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <!--引入需要的cglib需要的jar包-->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib-nodep</artifactId>
+            <version>2.1_3</version>
+        </dependency>
+
     </dependencies>
 
 </project>
