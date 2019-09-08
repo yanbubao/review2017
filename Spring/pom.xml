@@ -21,6 +21,7 @@
         <module>_07SpringJdbc</module>
         <module>_08SpringAopProxy</module>
         <module>_09SpringAopAdvice</module>
+        <module>_10SpringAopAdvisor</module>
     </modules>
 
     <properties>

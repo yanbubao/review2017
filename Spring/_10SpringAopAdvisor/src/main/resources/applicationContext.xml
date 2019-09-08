@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--配置目标对象-->
+    <bean id="userService" class="night.UserServiceImpl"/>
+    <!--前置通知-->
+    <bean id="beforeAdvice" class="night.BeforeAdvice"/>
+
+    <!--配置顾问-->
+    <bean id="advisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+        <!--通知是顾问的一个属性-->
+        <property name="advice" ref="beforeAdvice"/>
+        <!--配置切入点 NameMatchMethodPointcutAdvisor为方法名-->
+        <!--<property name="mappedNames" value="login,buySomething"/> 可以指定任意多个连接点！-->
+        <property name="mappedNames" value="login"/>
+    </bean>
+
+    <!--生成代理对象-->
+    <bean id="userProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!--注册目标对象-->
+        <property name="target" ref="userService"/>
+        <!--注册顾问-->
+        <property name="interceptorNames" value="advisor"/>
+    </bean>
+
+</beans>

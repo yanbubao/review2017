@@ -13,12 +13,14 @@
         <module name="_07SpringJdbc" />
         <module name="_09SpringAopAdvice" />
         <module name="_03SpringProperties" />
+        <module name="_10SpringAopAdvisor" />
         <module name="_04SpringAutoWired" />
         <module name="_08SpringAopProxy" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="_10SpringAopAdvice" target="1.5" />
+      <module name="_10SpringAopAdviser" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
