@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--01.配置目标对象-->
+    <bean id="userService" class="night.service.UserServiceImpl"/>
+
+    <!--02.配置通知Advice-->
+    <!--前置通知-->
+    <bean id="beforeAdvice" class="night.advices.BeforeAdvice"/>
+    <!--后置通知-->
+    <bean id="afterAdvice" class="night.advices.AfterAdvice"/>
+    <!--环绕通知-->
+    <bean id="aroundAdvice" class="night.advices.AroundAdvice"/>
+
+    <!--异常通知目标对象-->
+    <bean id="userException" class="night.exception.UserServiceImpl"/>
+    <!--配置异常通知-->
+    <bean id="exceptionAdvice" class="night.advices.ExceptionAdvice"/>
+
+    <!--03.配置代理工厂，生成代理类，来把通知织入目标对象
+        局限性：
+        只能将织面织入到目标对象的所有方法中去！
+        只能配置一个目标对象！
+    -->
+    <bean id="userProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!--注册目标对象-->
+        <property name="targetName" value="userService"/>
+        <!--注册通知-->
+        <!--<property name="interceptorNames" value="before,after"/>-->
+        <property name="interceptorNames">
+            <array>
+                <value>beforeAdvice</value>
+                <value>afterAdvice</value>
+                <value>aroundAdvice</value>
+            </array>
+        </property>
+    </bean>
+
+    <!--异常代理-->
+    <bean id="exceptionProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!--注册目标对象-->
+        <property name="targetName" value="userException"/>
+        <!--注册通知-->
+        <property name="interceptorNames">
+            <array>
+                <value>exceptionAdvice</value>
+            </array>
+        </property>
+        <!--优化动态代理，是否使用cglib
+            optimize：有接口就使用jdk代理，没接口使用cglib代理
+            proxyTargetClass：默认是false执行jdk代理；设置为true则强制执行cglib
+        -->
+       <!-- <property name="proxyTargetClass" value="true"/>-->
+        <property name="optimize" value="true"/>
+    </bean>
+
+    <!--
+        动态代理实现方式分为两种：
+        01.jdk   用于实现接口的情况！
+        02.cglib 接口和实现类都可以！
+
+        当目标类实现的接口时，使用jdk的效率高！
+
+
+        问题？
+           程序  spring容器怎么知道我们是用的类还是接口？？
+          public class ProxyConfig implements Serializable
+
+            private boolean proxyTargetClass = false;
+            private boolean optimize = false;
+
+            spring底层默认使用cglib！ 现在我们的项目中使用的是接口！
+            用spring默认的性能不高！
+
+           proxyTargetClass 和optimize都是用来设置 我们使用的代理模式是jdk还是cglib！
+
+           @Override
+    public AopProxy createAopProxy(AdvisedSupport config) throws AopConfigException {
+      //  根据我们配置文件中 proxyTargetClass 和 optimize的配置
+        if (config.isOptimize() || config.isProxyTargetClass() || hasNoUserSuppliedProxyInterfaces(config)) {
+            Class<?> targetClass = config.getTargetClass();
+            if (targetClass == null) {
+                throw new AopConfigException("TargetSource cannot determine target class: " +
+                        "Either an interface or a target is required for proxy creation.");
+            }
+           //根据目标对象返回对应的动态代理
+            if (targetClass.isInterface() || Proxy.isProxyClass(targetClass)) {
+                return new JdkDynamicAopProxy(config);
+            }
+            return new ObjenesisCglibAopProxy(config);
+        }
+        else {
+            return new JdkDynamicAopProxy(config);
+        }
+    }
+    -->
+</beans>

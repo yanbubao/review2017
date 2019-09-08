@@ -11,7 +11,9 @@
         <module name="_01SpringBase" />
         <module name="_05SpringSPEL" />
         <module name="_07SpringJdbc" />
+        <module name="_09SpringAopAdvice" />
         <module name="_03SpringProperties" />
+        <module name="_10SpringAopAdvice" />
         <module name="_04SpringAutoWired" />
         <module name="_08SpringAopProxy" />
       </profile>

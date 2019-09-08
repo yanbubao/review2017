@@ -10,5 +10,6 @@
     <file url="file://$PROJECT_DIR$/Spring/_06SpringConfiguration" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Spring/_07SpringJdbc" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Spring/_08SpringAopProxy" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Spring/_09SpringAopAdvice" charset="UTF-8" />
   </component>
 </project>
